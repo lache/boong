@@ -16,6 +16,8 @@ class BoongWidget extends StatelessWidget {
         child: Column(
           children: [
             Text('Boong $index: ${boong.moldState}'),
+            Expanded(
+                child: Image.asset('assets/mold${boong.moldState.index}.png')),
             ElevatedButton(
               onPressed: handleAction,
               child: Text(getActionName()),
