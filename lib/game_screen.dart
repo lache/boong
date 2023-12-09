@@ -47,7 +47,25 @@ class _GameScreenState extends State<GameScreen> {
             children: manager.customers
                 .map((customer) => ElevatedButton(
                     onPressed: () {},
-                    child: Text(customer.orderCount.toString())))
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Image.asset('assets/balloon.png'),
+                              Center(
+                                child: Text(
+                                  '${customer.orderCount.toString()}개 주세요.',
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(child: Image.asset('assets/char0.png')),
+                      ],
+                    )))
                 .toList()),
       );
 
