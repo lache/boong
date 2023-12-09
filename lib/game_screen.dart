@@ -48,29 +48,31 @@ class _GameScreenState extends State<GameScreen> {
         height: 240,
         child: Row(
             children: manager.customers
-                .map((customer) => ElevatedButton(
-                    onPressed: () {},
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Stack(
-                            alignment: Alignment.center,
+                .map((customer) => Expanded(
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Column(
                             children: [
-                              Image.asset('assets/balloon.png'),
-                              Center(
-                                child: Text(
-                                  '${customer.orderCount.toString()}개 주세요.',
-                                  textAlign: TextAlign.center,
+                              Expanded(
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Image.asset('assets/balloon.png'),
+                                    Center(
+                                      child: Text(
+                                        '${customer.orderCount.toString()}개 주세요.',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
+                              Expanded(
+                                  child: Image.asset(
+                                      'assets/char${customer.index}.png')),
                             ],
-                          ),
-                        ),
-                        Expanded(
-                            child: Image.asset(
-                                'assets/char${customer.index}.png')),
-                      ],
-                    )))
+                          )),
+                    ))
                 .toList()),
       );
 
@@ -80,11 +82,14 @@ class _GameScreenState extends State<GameScreen> {
             children: manager.displays
                 .asMap()
                 .entries
-                .map((entry) => ElevatedButton(
-                    onPressed: () {
-                      manager.sellBoong(entry.key);
-                    },
-                    child: Image.asset('assets/boong${entry.value.index}.png')))
+                .map((entry) => Expanded(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            manager.sellBoong(entry.key);
+                          },
+                          child: Image.asset(
+                              'assets/boong${entry.value.index}.png')),
+                    ))
                 .toList()),
       );
 
