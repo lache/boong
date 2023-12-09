@@ -12,7 +12,8 @@ const int maxDisplayCount = 10;
 const int maxCustomerCount = 5;
 
 class GameManager with ChangeNotifier {
-  final audioPlayer = AudioPlayer();
+  final audioPlayerBgm = AudioPlayer();
+  final audioPlayerSfx = AudioPlayer();
   Player player = Player();
   List<Boong> boongs = List.generate(maxMoldCount, (_) => Boong());
   Map<int, Timer> gasTimers = {};

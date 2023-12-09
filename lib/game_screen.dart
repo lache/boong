@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:boong/boong_widget.dart';
 import 'package:boong/game_manager.dart';
@@ -17,10 +19,10 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      //context.read<GameManager>().audioPlayer.play(AssetSource('bgm.mp4'));
-      context.read<GameManager>().audioPlayer.play(AssetSource('bgm.mp4'));
-    });
+    context
+        .read<GameManager>()
+        .audioPlayerBgm
+        .play(AssetSource('bgm${Random().nextInt(2)}.mp3'));
   }
 
   @override
