@@ -79,6 +79,8 @@ flutter:
     - assets/boong1.png
     - assets/boong2.png
     - assets/balloon.png
+    - assets/flour.flac
+    - assets/bgm.mp4
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

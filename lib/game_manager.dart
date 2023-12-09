@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:boong/boong.dart';
 import 'package:boong/customer.dart';
 import 'package:boong/player.dart';
@@ -11,6 +12,7 @@ const int maxDisplayCount = 10;
 const int maxCustomerCount = 5;
 
 class GameManager with ChangeNotifier {
+  final audioPlayer = AudioPlayer();
   Player player = Player();
   List<Boong> boongs = List.generate(maxMoldCount, (_) => Boong());
   Map<int, Timer> gasTimers = {};

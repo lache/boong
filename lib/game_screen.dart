@@ -1,7 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:boong/boong_widget.dart';
 import 'package:boong/game_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'main.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -14,6 +17,10 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () {
+      //context.read<GameManager>().audioPlayer.play(AssetSource('bgm.mp4'));
+      context.read<GameManager>().audioPlayer.play(AssetSource('bgm.mp4'));
+    });
   }
 
   @override
