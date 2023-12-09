@@ -36,7 +36,10 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Widget buildUI(GameManager manager) => Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Image.asset('assets/coin.png'),
           Text(manager.player.money.toString()),
         ],
       );
