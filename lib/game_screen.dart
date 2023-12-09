@@ -49,29 +49,27 @@ class _GameScreenState extends State<GameScreen> {
         child: Row(
             children: manager.customers
                 .map((customer) => Expanded(
-                      child: ElevatedButton(
-                          onPressed: () {},
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Image.asset('assets/balloon.png'),
-                                    Center(
-                                      child: Text(
-                                        '${customer.orderCount.toString()}개 주세요.',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ],
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Image.asset('assets/balloon.png'),
+                                Center(
+                                  child: Text(
+                                    '${customer.orderCount.toString()}개 주세요.',
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                              ),
-                              Expanded(
-                                  child: Image.asset(
-                                      'assets/char${customer.index}.png')),
-                            ],
-                          )),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                              child: Image.asset(
+                                  'assets/char${customer.index}.png')),
+                        ],
+                      ),
                     ))
                 .toList()),
       );
