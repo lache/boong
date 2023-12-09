@@ -4,7 +4,7 @@ import 'package:boong/boong.dart';
 
 class Customer {
   int index = Random().nextInt(7);
-  int orderCount = Random().nextInt(3) + 1;
+  int orderCount = Random().nextInt(6) + 1;
   int costs = 0;
 
   bool isOk() {
