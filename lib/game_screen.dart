@@ -63,7 +63,9 @@ class _GameScreenState extends State<GameScreen> {
                             ],
                           ),
                         ),
-                        Expanded(child: Image.asset('assets/char0.png')),
+                        Expanded(
+                            child: Image.asset(
+                                'assets/char${customer.index}.png')),
                       ],
                     )))
                 .toList()),
