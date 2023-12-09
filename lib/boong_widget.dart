@@ -11,13 +11,15 @@ class BoongWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final moldAssetName = boong.moldState != BoongMoldState.finishCooking
+        ? 'assets/mold${boong.moldState.index}.png'
+        : 'assets/mold4-${boong.determineBoongState()!.index}.png';
     return Expanded(
       child: Card(
         child: Column(
           children: [
             Text('Boong $index: ${boong.moldState}'),
-            Expanded(
-                child: Image.asset('assets/mold${boong.moldState.index}.png')),
+            Expanded(child: Image.asset(moldAssetName)),
             ElevatedButton(
               onPressed: handleAction,
               child: Text(getActionName()),
