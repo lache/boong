@@ -81,7 +81,7 @@ class _GameScreenState extends State<GameScreen> {
                 .asMap()
                 .entries
                 .map((entry) => Expanded(
-                      child: ElevatedButton(
+                      child: TextButton(
                           onPressed: () {
                             manager.sellBoong(entry.key);
                           },
