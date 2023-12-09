@@ -1,8 +1,11 @@
 import 'package:boong/boong.dart';
 import 'package:flutter/material.dart';
 
+const int maxMoldCount = 9;
+const int maxDisplayCount = 10;
+
 class GameManager with ChangeNotifier {
-  List<Boong> boongs = List.generate(9, (_) => Boong());
+  List<Boong> boongs = List.generate(maxMoldCount, (_) => Boong());
   List<BoongState> displays = [];
 
   void addFlourToBoong(int index) {
@@ -26,6 +29,9 @@ class GameManager with ChangeNotifier {
   }
 
   void resetMold(int index) {
+    if (displays.length >= maxDisplayCount) {
+      return;
+    }
     var maybe = boongs[index].determineBoongState();
     if (maybe != null) {
       displays.add(maybe);
