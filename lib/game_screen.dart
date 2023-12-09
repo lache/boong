@@ -23,11 +23,11 @@ class _GameScreenState extends State<GameScreen> {
         builder: (context, manager, child) {
           return Column(
             children: [
-              const Text("UI"),
+              buildUI(manager),
               buildCustomer(manager),
               buildDisplay(manager),
               buildMolds(manager),
-              const Text("UI"),
+              const Text("BOONG"),
             ],
           );
         },
@@ -35,22 +35,35 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Widget buildCustomer(GameManager manager) => Row(
-      children: manager.customers
-          .map((customer) => ElevatedButton(
-              onPressed: () {}, child: Text(customer.orderCount.toString())))
-          .toList());
+  Widget buildUI(GameManager manager) => Row(
+        children: [
+          Text(manager.player.money.toString()),
+        ],
+      );
 
-  Widget buildDisplay(GameManager manager) => Row(
-      children: manager.displays
-          .asMap()
-          .entries
-          .map((entry) => ElevatedButton(
-              onPressed: () {
-                manager.sellBoong(entry.key);
-              },
-              child: Image.asset('assets/boong${entry.value.index}.png')))
-          .toList());
+  Widget buildCustomer(GameManager manager) => SizedBox(
+        height: 240,
+        child: Row(
+            children: manager.customers
+                .map((customer) => ElevatedButton(
+                    onPressed: () {},
+                    child: Text(customer.orderCount.toString())))
+                .toList()),
+      );
+
+  Widget buildDisplay(GameManager manager) => SizedBox(
+        height: 120,
+        child: Row(
+            children: manager.displays
+                .asMap()
+                .entries
+                .map((entry) => ElevatedButton(
+                    onPressed: () {
+                      manager.sellBoong(entry.key);
+                    },
+                    child: Image.asset('assets/boong${entry.value.index}.png')))
+                .toList()),
+      );
 
   Widget buildMolds(GameManager manager) {
     return Expanded(
