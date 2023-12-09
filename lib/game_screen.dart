@@ -28,7 +28,8 @@ class GameScreen extends StatelessWidget {
   Widget buildDisplay(GameManager manager) => Row(
       children: manager.displays
           .map((item) => ElevatedButton(
-              onPressed: () {}, child: Text(item.name.substring(0, 1))))
+              onPressed: () {},
+              child: Image.asset('assets/boong${item.index}.png')))
           .toList());
 
   Widget buildMolds(GameManager manager) {

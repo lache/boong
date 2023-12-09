@@ -74,6 +74,9 @@ flutter:
     - assets/mold4-0.png
     - assets/mold4-1.png
     - assets/mold4-2.png
+    - assets/boong0.png
+    - assets/boong1.png
+    - assets/boong2.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
