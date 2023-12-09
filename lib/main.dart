@@ -7,7 +7,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => GameManager(),
-      child: MaterialApp(home: GameScreen()),
+      child: const MaterialApp(home: GameScreen()),
     ),
   );
 }

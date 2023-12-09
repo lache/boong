@@ -14,8 +14,18 @@ class GameManager with ChangeNotifier {
     notifyListeners();
   }
 
-  void cookBoong(int index) {
-    boongs[index].cook();
+  void startCooking(int index) {
+    boongs[index].startCooking();
+    notifyListeners();
+  }
+
+  void finishCooking(int index) {
+    boongs[index].finishCooking();
+    notifyListeners();
+  }
+
+  void resetMold(int index) {
+    boongs[index].resetMold();
     notifyListeners();
   }
 }

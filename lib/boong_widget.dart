@@ -7,28 +7,57 @@ class BoongWidget extends StatelessWidget {
   final GameManager manager;
   final int index;
 
-  BoongWidget(this.boong, this.manager, this.index);
+  const BoongWidget(this.boong, this.manager, this.index, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Text('Boong $index: ${boong.status}'),
-          ElevatedButton(
-            onPressed: () => manager.addFlourToBoong(index),
-            child: Text('Add Flour'),
-          ),
-          ElevatedButton(
-            onPressed: () => manager.addRedBeanPasteToBoong(index),
-            child: Text('Add Red Bean Paste'),
-          ),
-          ElevatedButton(
-            onPressed: () => manager.cookBoong(index),
-            child: Text('Cook'),
-          ),
-        ],
+    return Expanded(
+      child: Card(
+        child: Column(
+          children: [
+            Text('Boong $index: ${boong.moldState}'),
+            ElevatedButton(
+              onPressed: handleAction,
+              child: Text(getActionName()),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  void handleAction() {
+    switch (boong.moldState) {
+      case BoongMoldState.empty:
+        manager.addFlourToBoong(index);
+        break;
+      case BoongMoldState.flour:
+        manager.addRedBeanPasteToBoong(index);
+        break;
+      case BoongMoldState.redBean:
+        manager.startCooking(index);
+        break;
+      case BoongMoldState.startCooking:
+        manager.finishCooking(index);
+        break;
+      case BoongMoldState.finishCooking:
+        manager.resetMold(index);
+        break;
+    }
+  }
+
+  String getActionName() {
+    switch (boong.moldState) {
+      case BoongMoldState.empty:
+        return "Flour";
+      case BoongMoldState.flour:
+        return "Red Bean";
+      case BoongMoldState.redBean:
+        return "Start cooking";
+      case BoongMoldState.startCooking:
+        return "Finish";
+      case BoongMoldState.finishCooking:
+        return "Display";
+    }
   }
 }

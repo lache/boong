@@ -1,51 +1,52 @@
-enum BoongState { Undercooked, WellCooked, Burnt }
+enum BoongState { undercooked, wellCooked, burnt }
+
+enum BoongMoldState { empty, flour, redBean, startCooking, finishCooking }
 
 class Boong {
-  bool hasFlour = false;
-  bool hasRedBeanPaste = false;
-  DateTime? startTime = null;
+  BoongMoldState moldState = BoongMoldState.empty;
+  DateTime? startTime;
   int cookingTime = 0;
 
   void addFlour() {
-    if (!hasFlour) {
-      hasFlour = true;
+    if (moldState == BoongMoldState.empty) {
+      moldState = BoongMoldState.flour;
     }
   }
 
   void addRedBeanPaste() {
-    if (hasFlour && !hasRedBeanPaste) {
-      hasRedBeanPaste = true;
+    if (moldState == BoongMoldState.flour) {
+      moldState = BoongMoldState.redBean;
     }
   }
 
   void startCooking() {
-    if (hasFlour && hasRedBeanPaste) {
+    if (moldState == BoongMoldState.redBean) {
+      moldState = BoongMoldState.startCooking;
       startTime = DateTime.now();
     }
   }
 
   void finishCooking() {
-    if (startTime != null) {
+    if (moldState == BoongMoldState.startCooking) {
+      moldState = BoongMoldState.finishCooking;
       final currentTime = DateTime.now();
       cookingTime = currentTime.difference(startTime!).inSeconds;
-      determineBungeoppangState();
       startTime = null; // Reset start time for next cooking
     }
   }
 
-  BoongState determineBungeoppangState() {
+  BoongState determineBoongState() {
     if (cookingTime < 5) {
-      return BoongState.Undercooked;
+      return BoongState.undercooked;
     } else if (cookingTime <= 8) {
-      return BoongState.WellCooked;
+      return BoongState.wellCooked;
     } else {
-      return BoongState.Burnt;
+      return BoongState.burnt;
     }
   }
 
   void resetMold() {
-    hasFlour = false;
-    hasRedBeanPaste = false;
+    moldState = BoongMoldState.empty;
     startTime = null;
     cookingTime = 0;
   }
