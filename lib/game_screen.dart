@@ -3,8 +3,18 @@ import 'package:boong/game_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class GameScreen extends StatelessWidget {
-  const GameScreen({super.key});
+class GameScreen extends StatefulWidget {
+  const GameScreen({Key? key}) : super(key: key);
+
+  @override
+  State<GameScreen> createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +24,7 @@ class GameScreen extends StatelessWidget {
           return Column(
             children: [
               const Text("UI"),
-              const Text("Customer"),
+              buildCustomer(manager),
               buildDisplay(manager),
               buildMolds(manager),
               const Text("UI"),
@@ -25,11 +35,21 @@ class GameScreen extends StatelessWidget {
     );
   }
 
+  Widget buildCustomer(GameManager manager) => Row(
+      children: manager.customers
+          .map((customer) => ElevatedButton(
+              onPressed: () {}, child: Text(customer.orderCount.toString())))
+          .toList());
+
   Widget buildDisplay(GameManager manager) => Row(
       children: manager.displays
-          .map((item) => ElevatedButton(
-              onPressed: () {},
-              child: Image.asset('assets/boong${item.index}.png')))
+          .asMap()
+          .entries
+          .map((entry) => ElevatedButton(
+              onPressed: () {
+                manager.sellBoong(entry.key);
+              },
+              child: Image.asset('assets/boong${entry.value.index}.png')))
           .toList());
 
   Widget buildMolds(GameManager manager) {
