@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:boong/boong.dart';
 import 'package:boong/customer.dart';
+import 'package:boong/main.dart';
 import 'package:boong/player.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,6 @@ const int maxDisplayCount = 10;
 const int maxCustomerCount = 5;
 
 class GameManager with ChangeNotifier {
-  final audioPlayerBgm = AudioPlayer();
-  final audioPlayerSfx = AudioPlayer();
   Player player = Player();
   List<Boong> boongs = List.generate(maxMoldCount, (_) => Boong());
   Map<int, Timer> gasTimers = {};
@@ -80,6 +79,7 @@ class GameManager with ChangeNotifier {
 
   void addCustomer() {
     if (customers.length < maxCustomerCount) {
+      audioPlayerSfx.play(AssetSource('bell.mp3'));
       customers.add(Customer());
       notifyListeners();
     }

@@ -4,7 +4,8 @@ import 'package:boong/game_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-final audioPlayer = AudioPlayer();
+final audioPlayerBgm = AudioPlayer();
+final audioPlayerSfx = AudioPlayer();
 
 void main() {
   runApp(

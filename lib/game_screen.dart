@@ -19,10 +19,8 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    context
-        .read<GameManager>()
-        .audioPlayerBgm
-        .play(AssetSource('bgm${Random().nextInt(2)}.mp3'));
+    audioPlayerBgm.setReleaseMode(ReleaseMode.loop);
+    audioPlayerBgm.play(AssetSource('bgm${1 + Random().nextInt(2)}.mp3'));
   }
 
   @override
