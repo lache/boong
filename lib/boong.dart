@@ -35,7 +35,10 @@ class Boong {
     }
   }
 
-  BoongState determineBoongState() {
+  BoongState? determineBoongState() {
+    if (moldState != BoongMoldState.finishCooking) {
+      return null;
+    }
     if (cookingTime < 5) {
       return BoongState.undercooked;
     } else if (cookingTime <= 8) {

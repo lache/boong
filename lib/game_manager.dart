@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class GameManager with ChangeNotifier {
   List<Boong> boongs = List.generate(9, (_) => Boong());
+  List<BoongState> displays = [];
 
   void addFlourToBoong(int index) {
     boongs[index].addFlour();
@@ -25,6 +26,10 @@ class GameManager with ChangeNotifier {
   }
 
   void resetMold(int index) {
+    var maybe = boongs[index].determineBoongState();
+    if (maybe != null) {
+      displays.add(maybe);
+    }
     boongs[index].resetMold();
     notifyListeners();
   }

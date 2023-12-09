@@ -15,40 +15,8 @@ class GameScreen extends StatelessWidget {
             children: [
               const Text("UI"),
               const Text("Customer"),
-              const Text("Display"),
-              Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          BoongWidget(manager.boongs[0], manager, 0),
-                          BoongWidget(manager.boongs[1], manager, 1),
-                          BoongWidget(manager.boongs[2], manager, 2),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          BoongWidget(manager.boongs[3], manager, 3),
-                          BoongWidget(manager.boongs[4], manager, 4),
-                          BoongWidget(manager.boongs[5], manager, 5),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          BoongWidget(manager.boongs[6], manager, 6),
-                          BoongWidget(manager.boongs[7], manager, 7),
-                          BoongWidget(manager.boongs[8], manager, 8),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              buildDisplay(manager),
+              buildMolds(manager),
               const Text("UI"),
             ],
           );
@@ -56,4 +24,49 @@ class GameScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildDisplay(GameManager manager) => Row(
+      children: manager.displays
+          .map((item) => ElevatedButton(
+              onPressed: () {}, child: Text(item.name.substring(0, 1))))
+          .toList());
+
+  Widget buildMolds(GameManager manager) {
+    return Expanded(
+      child: Column(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                buildMold(manager, 0),
+                buildMold(manager, 1),
+                buildMold(manager, 2),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                buildMold(manager, 3),
+                buildMold(manager, 4),
+                buildMold(manager, 5),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                buildMold(manager, 6),
+                buildMold(manager, 7),
+                buildMold(manager, 8),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  BoongWidget buildMold(GameManager manager, int index) =>
+      BoongWidget(manager.boongs[index], manager, index);
 }
