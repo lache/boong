@@ -15,16 +15,16 @@ class BoongWidget extends StatelessWidget {
         ? 'assets/mold${boong.moldState.index}.png'
         : 'assets/mold4-${boong.determineBoongState()!.index}.png';
     return Expanded(
-      child: Card(
-        child: Column(
-          children: [
-            Text('Boong $index: ${boong.moldState}'),
-            Expanded(child: Image.asset(moldAssetName)),
-            ElevatedButton(
-              onPressed: handleAction,
-              child: Text(getActionName()),
-            ),
-          ],
+      child: InkWell(
+        onTap: handleAction,
+        child: Card(
+          child: Column(
+            children: [
+              //Text('Boong $index: ${boong.moldState}'),
+              Expanded(child: Image.asset(moldAssetName)),
+              //Text(getActionName()),
+            ],
+          ),
         ),
       ),
     );
